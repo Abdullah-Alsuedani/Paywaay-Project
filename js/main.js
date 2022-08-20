@@ -10,20 +10,14 @@ let loadCont = document.createElement("div")
 loadCont.classList.add("loading")
 let load = document.createElement("div")
 load.classList.add("load")
+let content;
 
 
     page.innerHTML = ""
     loadCont.appendChild(load)
     page.appendChild(loadCont)
     setTimeout(() => {
-        // fetch("../home/home.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
-        // page.innerHTML = `<object type="text/html" data="../home/home.html"></object>`
-        let nw = new XMLHttpRequest()
-        nw.open("GET", "../home/home.html")
-        nw.send()
-        nw.onreadystatechange = function(){
-            page.innerHTML = nw.responseText
-        }
+        fetch("home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
     }, 700);
 
 

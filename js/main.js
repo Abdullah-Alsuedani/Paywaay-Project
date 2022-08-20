@@ -17,9 +17,15 @@ let content;
     loadCont.appendChild(load)
     page.appendChild(loadCont)
     setTimeout(() => {
-        fetch("home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
+        fetch("../home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
     }, 700);
 
+    // let nw = new XMLHttpRequest()
+    // nw.open("GET", "../home/home.html")
+    // nw.send()
+    // nw.onreadystatechange = function(){
+    //     page.innerHTML = nw.responseText
+    // }
 
 navLis.forEach((ele) =>{
     ele.addEventListener("click", (e)=>{
@@ -52,7 +58,7 @@ navLis.forEach((ele) =>{
             loadCont.appendChild(load)
             page.appendChild(loadCont)
             setTimeout(() => {
-                fetch("../home/home.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+                fetch("../home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
             }, 700);
         }
         if(e.currentTarget.textContent === "About Us"){
@@ -60,7 +66,7 @@ navLis.forEach((ele) =>{
             loadCont.appendChild(load)
             page.appendChild(loadCont)
             setTimeout(() => {
-                fetch("../about/about.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+                fetch("../about.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
             }, 700);
         }
         if(e.currentTarget.textContent === "Projects"){
@@ -68,7 +74,7 @@ navLis.forEach((ele) =>{
             loadCont.appendChild(load)
             page.appendChild(loadCont)
             setTimeout(() => {
-                fetch("../projects/projects.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+                fetch("../projects.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
             }, 700);
         }
     })

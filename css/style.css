@@ -123,13 +123,13 @@ header .nav li a{
     z-index: 2;
     color: var(--dark-green-color);
     font-weight: 500;
+    transition: 0.3s;
 }
 header .nav li a:hover{
     color: #fff;
 }
 header .nav li.active a{
     transition-delay: 0.3s;
-    transition: 0.3s;
     color: #fff;
 }
 @media (max-width: 767px) {

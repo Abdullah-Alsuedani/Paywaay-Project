@@ -16,7 +16,14 @@ load.classList.add("load")
     loadCont.appendChild(load)
     page.appendChild(loadCont)
     setTimeout(() => {
-        fetch("../home/home.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+        // fetch("../home/home.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+        // page.innerHTML = `<object type="text/html" data="../home/home.html"></object>`
+        let nw = new XMLHttpRequest()
+        nw.open("GET", "../home/home.html")
+        nw.send()
+        nw.onreadystatechange = function(){
+            page.innerHTML = nw.responseText
+        }
     }, 700);
 
 

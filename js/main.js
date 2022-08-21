@@ -11,21 +11,22 @@ loadCont.classList.add("loading")
 let load = document.createElement("div")
 load.classList.add("load")
 let content;
-
+let activePage;
 
     page.innerHTML = ""
     loadCont.appendChild(load)
     page.appendChild(loadCont)
     setTimeout(() => {
-        fetch("home/home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
+        let activePage = new XMLHttpRequest();
+        activePage.open("GET", "home/home.html")
+        activePage.onreadystatechange = function(){
+            page.innerHTML = activePage.responseText
+            if(activePage.readyState === 4){
+                homeEvents()
+            }
+        }
+        activePage.send()
     }, 700);
-
-    // let nw = new XMLHttpRequest()
-    // nw.open("GET", "../home/home.html")
-    // nw.send()
-    // nw.onreadystatechange = function(){
-    //     page.innerHTML = nw.responseText
-    // }
 
 navLis.forEach((ele) =>{
     ele.addEventListener("click", (e)=>{
@@ -58,7 +59,15 @@ navLis.forEach((ele) =>{
             loadCont.appendChild(load)
             page.appendChild(loadCont)
             setTimeout(() => {
-                fetch("../home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
+                let activePage = new XMLHttpRequest();
+                activePage.open("GET", "home/home.html")
+                activePage.onreadystatechange = function(){
+                    page.innerHTML = activePage.responseText
+                    if(activePage.readyState === 4){
+                        homeEvents()
+                    }
+                }
+                activePage.send()
             }, 700);
         }
         if(e.currentTarget.textContent === "About Us"){
@@ -66,7 +75,15 @@ navLis.forEach((ele) =>{
             loadCont.appendChild(load)
             page.appendChild(loadCont)
             setTimeout(() => {
-                fetch("../about.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+                let activePage = new XMLHttpRequest();
+                activePage.open("GET", "about/about.html")
+                activePage.onreadystatechange = function(){
+                    page.innerHTML = activePage.responseText
+                    if(activePage.readyState === 4){
+                        aboutEvents()
+                    }
+                }
+                activePage.send()
             }, 700);
         }
         if(e.currentTarget.textContent === "Projects"){
@@ -74,7 +91,15 @@ navLis.forEach((ele) =>{
             loadCont.appendChild(load)
             page.appendChild(loadCont)
             setTimeout(() => {
-                fetch("../projects.html").then(reponse => reponse.text()).then(text => page.innerHTML = text)
+                let activePage = new XMLHttpRequest();
+                activePage.open("GET", "projects/projects.html")
+                activePage.onreadystatechange = function(){
+                    page.innerHTML = activePage.responseText
+                    if(activePage.readyState === 4){
+                        projectsEvents()
+                    }
+                }
+                activePage.send()
             }, 700);
         }
     })
@@ -97,3 +122,10 @@ xmark.onclick = function(){
     bar.style.display = "block"
     xmark.style.display = "none"
 }
+
+function homeEvents(){
+        let cardsContainer = document.querySelector(".cards")
+        console.log(cardsContainer)
+}
+
+

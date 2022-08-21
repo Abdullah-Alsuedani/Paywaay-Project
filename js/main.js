@@ -17,7 +17,7 @@ let content;
     loadCont.appendChild(load)
     page.appendChild(loadCont)
     setTimeout(() => {
-        fetch("../home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
+        fetch("home/home.html").then(reponse => reponse.text()).then(res => page.innerHTML = res)
     }, 700);
 
     // let nw = new XMLHttpRequest()

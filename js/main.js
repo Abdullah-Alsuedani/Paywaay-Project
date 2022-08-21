@@ -126,6 +126,30 @@ xmark.onclick = function(){
 function homeEvents(){
         let cardsContainer = document.querySelector(".cards")
         console.log(cardsContainer)
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        cardsContainer.addEventListener("mousedown", function(e){
+            isDown = true;
+            startX = e.pageX - cardsContainer.offsetLeft
+            scrollLeft = cardsContainer.scrollLeft
+            cardsContainer.classList.add("active")
+        })
+        cardsContainer.addEventListener("mouseleave", function(){
+            isDown = false;
+            cardsContainer.classList.remove("active")
+        })
+        cardsContainer.addEventListener("mouseup", function(){
+            isDown = false;
+            cardsContainer.classList.remove("active")
+        })
+        cardsContainer.addEventListener("mousemove", function(e){
+            if(!isDown) return;
+            e.preventDefault()
+            let x = e.pageX - cardsContainer.offsetLeft;
+            let walk = (x - startX);
+            cardsContainer.scrollLeft = scrollLeft - walk
+        })
 }
 
 

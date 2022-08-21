@@ -445,7 +445,7 @@ header .nav li.active a{
     height: 250px;
     border-radius: 50%;
     position: absolute;
-    bottom: -100px;
+    bottom: 0;
     left: -100px;
 }
 .testim .cards{
@@ -453,6 +453,11 @@ header .nav li.active a{
     gap: 30px;
     margin: 0 0 0 30px;
     overflow: hidden;
+    user-select: none;
+}
+.testim .cards.active{
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
 }
 .testim .cards .card{
     min-width: 400px;

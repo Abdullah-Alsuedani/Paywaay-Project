@@ -452,12 +452,22 @@ header .nav li.active a{
     display: flex;
     gap: 30px;
     margin: 0 0 0 30px;
-    overflow: hidden;
     user-select: none;
+    overflow-x: scroll;
 }
 .testim .cards.active{
     cursor: grabbing;
     cursor: -webkit-grabbing;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.cards::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.cards {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 .testim .cards .card{
     min-width: 400px;

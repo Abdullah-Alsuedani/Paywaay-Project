@@ -13,9 +13,13 @@ load.classList.add("load")
 let content;
 let activePage;
 
+let footerNav = document.querySelectorAll(".footer .links li")
+
     page.innerHTML = ""
     loadCont.appendChild(load)
     page.appendChild(loadCont)
+    footerNav.forEach(ele=>ele.classList.remove("active"))
+
     setTimeout(() => {
         let activePage = new XMLHttpRequest();
         activePage.open("GET", "home/home.html")
@@ -26,11 +30,13 @@ let activePage;
             }
         }
         activePage.send()
+        footerNav[0].classList.add("active")
     }, 700);
 
-navLis.forEach((ele) =>{
+function navs(navlies){
+navlies.forEach((ele) =>{
     ele.addEventListener("click", (e)=>{
-        navLis.forEach((ele)=>{
+        navlies.forEach((ele)=>{
             ele.classList.remove("active")
         })
         e.currentTarget.classList.add("active")
@@ -58,6 +64,7 @@ navLis.forEach((ele) =>{
             page.innerHTML = ""
             loadCont.appendChild(load)
             page.appendChild(loadCont)
+            footerNav.forEach(ele=>ele.classList.remove("active"))
             setTimeout(() => {
                 let activePage = new XMLHttpRequest();
                 activePage.open("GET", "home/home.html")
@@ -68,12 +75,14 @@ navLis.forEach((ele) =>{
                     }
                 }
                 activePage.send()
+                footerNav[0].classList.add("active")
             }, 700);
         }
         if(e.currentTarget.textContent === "About Us"){
             page.innerHTML = ""
             loadCont.appendChild(load)
             page.appendChild(loadCont)
+            footerNav.forEach(ele=>ele.classList.remove("active"))
             setTimeout(() => {
                 let activePage = new XMLHttpRequest();
                 activePage.open("GET", "about/about.html")
@@ -84,12 +93,14 @@ navLis.forEach((ele) =>{
                     }
                 }
                 activePage.send()
+                footerNav[1].classList.add("active")
             }, 700);
         }
         if(e.currentTarget.textContent === "Projects"){
             page.innerHTML = ""
             loadCont.appendChild(load)
             page.appendChild(loadCont)
+            footerNav.forEach(ele=>ele.classList.remove("active"))
             setTimeout(() => {
                 let activePage = new XMLHttpRequest();
                 activePage.open("GET", "projects/projects.html")
@@ -100,10 +111,15 @@ navLis.forEach((ele) =>{
                     }
                 }
                 activePage.send()
+                footerNav[2].classList.add("active")
             }, 700);
         }
     })
 })
+}
+
+navs(navLis)
+navs(footerNav)
 
 window.onresize = function(){
     if(window.innerWidth > 650){
@@ -125,7 +141,6 @@ xmark.onclick = function(){
 
 function homeEvents(){
         let cardsContainer = document.querySelector(".cards")
-        console.log(cardsContainer)
         let isDown = false;
         let startX;
         let scrollLeft;
@@ -150,6 +165,28 @@ function homeEvents(){
             let walk = (x - startX);
             cardsContainer.scrollLeft = scrollLeft - walk
         })
+
+
+        let showProjects = document.querySelector(".last-proj .show-btn")
+        showProjects.onclick = function(){
+            navBack.style.left = "235px";
+            navLis.forEach(ele=>ele.classList.remove("active"))
+            Array.from(navLis)[2].classList.add("active")
+            page.innerHTML = ""
+            loadCont.appendChild(load)
+            page.appendChild(loadCont)
+            setTimeout(() => {
+                let activePage = new XMLHttpRequest();
+                activePage.open("GET", "projects/projects.html")
+                activePage.onreadystatechange = function(){
+                    page.innerHTML = activePage.responseText
+                    if(activePage.readyState === 4){
+                        projectsEvents()
+                    }
+                }
+                activePage.send()
+            }, 700);
+        }
 }
 
 
